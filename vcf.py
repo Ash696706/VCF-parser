@@ -10,6 +10,7 @@ with open("sample.vcf", "w") as file:
 file = open("sample.vcf", "r")
 lines = file.readlines()
 variant_count = 0
+high_quality_count = 0
 
 for line in lines:
 
@@ -26,6 +27,7 @@ for line in lines:
     filter_status = columns[6]
     info = columns[7]
     if quality >= 90:
+        high_quality_count += 1
       print("High quality variant",columns[2])
     else:
       print("Low quality variant",columns[2])  
@@ -39,4 +41,6 @@ for line in lines:
     print("Filter:", filter_status)
     print("Info:", info)
     print()
-print("Total variants:",variant_count)    
+print("Total variants:",variant_count) 
+print("High quality counts:", high_quality_count)
+file.close()
